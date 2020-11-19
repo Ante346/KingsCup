@@ -1,0 +1,2 @@
+# KingsCup
+KingsCup for android
