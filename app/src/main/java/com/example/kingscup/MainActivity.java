@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,15 +16,55 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Card> deck = new ArrayList<>();
+    private TextView questView;
+    private Button backbtn;
+    private ImageView cardView;
+    private TextView playerNameView;
+    private int cardCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setupUI();
+
+        shuffle();
+
+        refresh();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void setupUI() {
+        questView = findViewById(R.id.questView);
+        backbtn = findViewById(R.id.backButton);
+        cardView = findViewById(R.id.cardView);
+        playerNameView = findViewById(R.id.nameView);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardCount++;
+                refresh();
+            }
+        });
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(cardCount>0) {
+                    cardCount--;
+                }
+                refresh();
+            }
+        });
+    }
+
+    private void refresh(){
+        questView.setText(deck.get(cardCount).getDescription());
+    }
+
     private void shuffle(){
+        deck.clear();
         Random random = new Random();
         deck.add(new Card("Herz 2", random.nextInt(400),"Kategorie"));
         deck.add(new Card("Kreuz 2", random.nextInt(400),"Kategorie"));
