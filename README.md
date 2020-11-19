@@ -12,3 +12,6 @@ If you get a king you can pour any liquid you can find in the "Kings Cup", the 4
 
 # Gallery
 
+<img src="https://user-images.githubusercontent.com/70017488/99717304-89858280-2aa9-11eb-9688-d166374bc9c3.png" width="200" height="400">
+
+<img src="https://user-images.githubusercontent.com/70017488/99717412-a8841480-2aa9-11eb-9532-2f140359bfdb.png" width="200" height="400">
