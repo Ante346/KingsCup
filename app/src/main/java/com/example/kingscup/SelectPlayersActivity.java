@@ -1,9 +1,13 @@
 package com.example.kingscup;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -14,6 +18,8 @@ import java.util.ArrayList;
 public class SelectPlayersActivity extends AppCompatActivity {
 
     private Spinner mspin;
+    private Context context = this;
+    private Button startGamebtn;
     private ListView list;
     private ArrayList<PlayerListItem> playerList = new ArrayList<>();
     private int playerNumber = 1;
@@ -36,6 +42,17 @@ public class SelectPlayersActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
+        startGamebtn = findViewById(R.id.startGameButton);
+
+        startGamebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.putExtra("players",getNames());
+                startActivity(intent);
+            }
+        });
+
         mspin=(Spinner) findViewById(R.id.spinner);
         Integer[] items = new Integer[]{1,2,3,4,5,6,7,8};
         ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, items);
@@ -59,6 +76,22 @@ public class SelectPlayersActivity extends AppCompatActivity {
         list = findViewById(R.id.playersListView);
 
         setUpList();
+    }
+
+    private String[] getNames() {
+        View v;
+        EditText et;
+
+        int listLength = list.getChildCount();
+        String[] valueOfEditText = new String[listLength];
+        for (int i = 0; i < listLength; i++)
+        {
+            v = list.getChildAt(i);
+            et = (EditText) v.findViewById(R.id.playerNameField);
+            valueOfEditText[i] = et.getText().toString();
+        }
+
+        return valueOfEditText;
     }
 
     private void setUpList() {

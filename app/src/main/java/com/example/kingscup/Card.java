@@ -7,11 +7,13 @@ public class Card implements Comparable {
     private final int index;
     private final String name;
     private final String description;
+    private int resource;
 
-    public Card(String name, int index,String description){
+    public Card(String name, int index,String description,int resource){
         this.name = name;
         this.index = index;
         this.description = description;
+        this.resource = resource;
     }
 
     public String getName(){
@@ -24,6 +26,10 @@ public class Card implements Comparable {
 
     public int getIndex(){
         return index;
+    }
+
+    public int getResource(){
+        return resource;
     }
 
     @Override
