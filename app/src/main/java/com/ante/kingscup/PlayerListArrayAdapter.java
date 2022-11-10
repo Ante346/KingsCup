@@ -1,21 +1,16 @@
-package com.example.kingscup;
+package com.ante.kingscup;
 
 import android.content.Context;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class PlayerListArrayAdapter extends ArrayAdapter<PlayerListItem> {
     private final Context context;

@@ -1,7 +1,4 @@
-package com.example.kingscup;
-
-import java.util.Comparator;
-import java.util.Random;
+package com.ante.kingscup;
 
 public class Card implements Comparable {
     private final int index;

@@ -1,4 +1,4 @@
-package com.example.kingscup;
+package com.ante.kingscup;
 
 import org.junit.Test;
 
