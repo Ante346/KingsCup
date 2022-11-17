@@ -2,6 +2,7 @@ package com.ante.kingscup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private String[] players;
     private int kingCount = 0;
     private TextView gameOverText;
+    private Button restartBtn;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         cardView = findViewById(R.id.cardView);
         playerNameView = findViewById(R.id.nameView);
         gameOverText = findViewById(R.id.gameOverView);
+        restartBtn = findViewById(R.id.restartButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +83,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
+
+
 
     private void refresh(){
         if(deck.get(cardCount).getDescription().equals("Kingscup")){
@@ -88,10 +95,25 @@ public class MainActivity extends AppCompatActivity {
         if(kingCount==4){
             gameOverText.setText(players[playerCount]+" hat verloren");
             gameOverText.setVisibility(View.VISIBLE);
+
+            createRestartButton();
         }
         questView.setText(deck.get(cardCount).getDescription());
         playerNameView.setText(players[playerCount]);
         cardView.setImageResource(deck.get(cardCount).getResource());
+    }
+
+    private void createRestartButton() {
+        restartBtn.setVisibility(View.VISIBLE);
+
+        restartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SelectPlayersActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void shuffle(){
